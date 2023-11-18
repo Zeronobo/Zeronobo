@@ -1,23 +1,31 @@
-using UnityEngine;
+import random
 
-public class Kogel : MonoBehaviour
-{
-    public float snelheid = 10f;
-    public float levensduur = 2f;
+def raadspel():
+    # Kies een willekeurig getal tussen 1 en 10
+    doelgetal = random.randint(1, 10)
+    
+    # Aantal pogingen dat de speler heeft
+    pogingen = 3
+    
+    print("Welkom bij het raadspel! Raad het getal tussen 1 en 10.")
 
-    void Start()
-    {
-        Destroy(gameObject, levensduur);
-    }
+    while pogingen > 0:
+        try:
+            gok = int(input("Doe een gok: "))
+            
+            if gok == doelgetal:
+                print("Gefeliciteerd! Je hebt het juiste getal geraden.")
+                break
+            else:
+                print("Helaas, dat is niet correct.")
+                pogingen -= 1
+                print(f"Je hebt nog {pogingen} {'poging' if pogingen == 1 else 'pogingen'} over.")
+        except ValueError:
+            print("Voer een geldig getal in.")
 
-    void Update()
-    {
-        BeweegKogel();
-    }
+    print(f"Het juiste getal was {doelgetal}. Het spel is voorbij.")
 
-    void BeweegKogel()
-    {
-        transform.Translate(Vector3.forward * snelheid * Time.deltaTime);
-    }
-}
+if __name__ == "__main__":
+    raadspel()
+
 
